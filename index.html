@@ -1038,6 +1038,34 @@
 
   loadRsvpData();
 </script>
+  <!-- عنصر ملف الصوت -->
+<audio id="bg-music" loop src="music.mp3"></audio>
+
+<!-- زر تشغيل وإيقاف الموسيقى -->
+<button id="music-btn" onclick="toggleMusic()" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; background: #800020; color: white; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 20px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">
+  🎵
+</button>
+
+<script>
+  const music = document.getElementById('bg-music');
+  const btn = document.getElementById('music-btn');
+
+  // تشغيل الأغنية فور أول لمسة أو ضغطة للضيف في الصفحة
+  document.addEventListener('click', function startAudio() {
+    music.play();
+    document.removeEventListener('click', startAudio);
+  }, { once: true });
+
+  function toggleMusic() {
+    if (music.paused) {
+      music.play();
+      btn.textContent = '🎵';
+    } else {
+      music.pause();
+      btn.textContent = '🔇';
+    }
+  }
+</script>
 
 </body>
 </html>
